@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>beetlebum - Landing Page</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100vh;
+            height: 100dvh; 
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow: hidden; 
+        }
+
+        /* Layout Grid Utama */
+        .container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+            height: 100dvh; 
+            padding: 40px; 
+            position: relative;
+            width: 100%;
+        }
+
+        /* Header (Atas) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .nav-btn {
+            border: 1px solid #ffffff;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, color 0.3s;
+            display: inline-block;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Main Content (Tengah - Area Video Utama) */
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            overflow: hidden; 
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 70vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none; 
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        /* Kontainer Video Glitch Kustom */
+        .custom-glitch-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            z-index: 9999; 
+            pointer-events: none;
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+        }
+
+        .custom-glitch-overlay video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        .custom-glitch-overlay.active {
+            display: flex; 
+        }
+
+        /* Footer (Bawah) */
+        footer {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .location { color: #e0e0e0; text-align: left; }
+        .social-center { text-align: center; }
+        .email-right { text-align: right; }
+
+        .footer-link {
+            color: #ffffff;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+        /* --- PERBAIKAN TOTAL RESPONSIVE SMARTPHONE --- */
+        @media (max-width: 768px) {
+            body, html {
+                overflow: hidden;
+            }
+
+            .container { 
+                padding: 30px 20px; 
+                height: 100dvh;
+                grid-template-rows: auto 1fr auto;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .nav-btn { 
+                font-size: 0.85rem; 
+                padding: 6px 12px; 
+                letter-spacing: 0.5px;
+            }
+            
+            main {
+                padding: 0;
+                height: 100%;
+                width: 100%;
+            }
+            
+            .video-container { 
+                max-height: 100%;
+                width: 100%;
+                height: 100%;
+            }
+            
+            .video-container video {
+                max-height: 100%;
+                width: 100%;
+                height: 100%;
+                
+                /* PILIHAN A: Memaksa video nge-zoom (scale) agar objek 3D di tengah terlihat besar.
+                   Ubah angka '2.2' (220%) menjadi lebih besar atau kecil sesuai keinginan Anda. */
+                object-fit: contain;
+                transform: scale(2.2); 
+                
+                /* PILIHAN B: Jika ingin memotong background hitam secara otomatis menggunakan auto-crop bawan browser,
+                   hapus tanda komentar pada baris di bawah ini dan hapus 'transform: scale' di atas. */
+                /* object-fit: cover; */
+            }
+
+            footer { 
+                display: flex; 
+                flex-direction: column; 
+                gap: 6px; 
+                text-align: center; 
+                font-size: 0.75rem; 
+            }
+            .location, .social-center, .email-right { 
+                text-align: center; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-glitch-overlay" id="glitchVideoOverlay">
+        <video id="glitchVideo" muted playsinline preload="auto">
+            <source src="glitchvideo.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="container">
+        <header>
+            <a href="#" id="logoBtn" class="nav-btn sound-trigger" style="text-transform: none;">BEETLEBUM</a>
+            <a href="works.html" id="worksBtn" class="nav-btn sound-trigger">WORKS</a>
+        </header>
+
+        <main id="centerArea" class="sound-trigger">
+            <div class="video-container">
+                <video autoplay loop muted playsinline id="mainVideo">
+                    <source src="videosaya.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+            </div>
+        </main>
+
+        <footer>
+            <div class="location">Batam, Indonesia</div>
+            <div class="social-center">
+                <a href="https://www.instagram.com/beetlebum_____/" target="_blank" class="footer-link">Instagram</a>
+            </div>
+            <div class="email-right">
+                <a href="mailto:armenrifaihasibuan@gmail.com" class="footer-link">armenrifaihasibuan@gmail.com</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        let audioCtx = null;
+        
+        const glitchVideoOverlay = document.getElementById('glitchVideoOverlay');
+        const glitchVideo = document.getElementById('glitchVideo');
+        const mainVideo = document.getElementById('mainVideo');
+
+        // FORCE PLAY UNTUK MOBILE
+        window.addEventListener('DOMContentLoaded', () => {
+            if (mainVideo) {
+                mainVideo.play().catch(err => {
+                    console.log("Autoplay diblokir sistem mobile, mencoba memutar ulang...", err);
+                    document.body.addEventListener('touchstart', () => {
+                        mainVideo.play();
+                    }, { once: true });
+                });
+            }
+        });
+
+        function playGlitchSound() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const duration = 0.15; 
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            osc.type = 'sawtooth'; 
+            const now = audioCtx.currentTime;
+            osc.frequency.setValueAtTime(800, now);
+            osc.frequency.setValueAtTime(120, now + 0.03);
+            osc.frequency.setValueAtTime(1500, now + 0.06);
+            osc.frequency.setValueAtTime(40, now + 0.09);
+
+            gainNode.gain.setValueAtTime(0.2, now); 
+            gainNode.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            osc.start(now);
+            osc.stop(now + duration);
+        }
+
+        function triggerVideoGlitch() {
+            glitchVideo.currentTime = 0;
+            glitchVideoOverlay.classList.add('active');
+            
+            glitchVideo.play().catch(error => console.log("Video play diblokir:", error));
+
+            setTimeout(() => {
+                glitchVideoOverlay.classList.remove('active');
+                glitchVideo.pause();
+            }, 200); 
+        }
+
+        const triggers = document.querySelectorAll('.sound-trigger');
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', function(event) {
+                const targetUrl = this.getAttribute('href');
+                
+                if (targetUrl && targetUrl !== '#') {
+                    event.preventDefault(); 
+                    
+                    playGlitchSound();
+                    triggerVideoGlitch();
+                    
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 200);
+                } else {
+                    if (this.id === 'logoBtn' || this.id === 'centerArea') {
+                        event.preventDefault(); 
+                    }
+                    playGlitchSound();
+                    triggerVideoGlitch();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacts - Armen Rifai Hasibuan</title>
+
+  <style>
+    *{
+      margin:0; padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body{
+      background:#111;
+      overflow:hidden;
+    }
+
+    /* CONTAINER UTAMA */
+    .container{
+      width: 100vw; height: 100vh;
+      background:#f3f3f3; padding: 30px 0;
+      position:relative; overflow:hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+
+    /* NAVBAR */
+    .navbar{
+      display:flex; justify-content:space-between; align-items:center;
+      position: relative; z-index: 100; padding: 0 40px; 
+    }
+
+    .logo a { text-decoration: none; color: #000; font-size:24px; font-weight:900; }
+    .menu { display:flex; gap:50px; }
+    .menu a { text-decoration:none; color:#000; font-weight:800; font-size:18px; }
+
+    /* CONTENT UTAMA */
+    .contact-wrapper {
+      padding: 0 40px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 1200px;
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .contact-wrapper.reveal-smooth {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .main-text {
+      font-size: clamp(24px, 4vw, 46px);
+      font-weight: 400;
+      line-height: 1.3;
+      color: #000;
+      margin-bottom: 25px;
+    }
+
+    /* ANIMASI PER HURUF BERSERAK */
+    .email-link {
+      font-size: clamp(24px, 5vw, 56px);
+      font-weight: 900;
+      color: #000;
+      text-decoration: none;
+      word-break: break-word;
+      display: inline-block;
+    }
+
+    /* Struktur style untuk tiap huruf */
+    .email-link span {
+      display: inline-block;
+      position: relative;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15), opacity 0.3s ease;
+    }
+
+    /* Efek hover ketika kursor menyentuh huruf spesifik */
+    .email-link span:hover {
+      opacity: 0.5;
+      color: #333;
+      transform: 
+        translate(var(--x, 0px), var(--y, 0px)) 
+        rotate(var(--r, 0deg)) 
+        scale(1.2); /* Huruf sedikit membesar saat terpental */
+    }
+
+    /* FOOTER SECTION */
+    .footer-section {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 150px;
+      padding: 0 40px;
+      margin-top: auto;
+    }
+
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-column h4 {
+      font-size: 24px;
+      font-weight: 900;
+      color: #000;
+      margin-bottom: 5px;
+    }
+
+    .footer-column a, .footer-column p {
+      font-size: 16px;
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-column a:hover {
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVE MOBILE BREAKPOINTS */
+    @media(max-width:768px){
+      .container { padding: 15px 0; }
+      .navbar { padding: 0 20px; }
+      .logo a { font-size: 18px; }
+      .menu { gap: 20px; }
+      .menu a { font-size: 14px; }
+      
+      .contact-wrapper { padding: 0 20px; }
+      
+      .footer-section {
+        padding: 0 20px;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+      
+      .footer-column h4 { font-size: 18px; }
+      .footer-column a, .footer-column p { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="navbar">
+      <div class="logo"><a href="index.html" class="page-link">ARMEN RIFAI HASIBUAN</a></div>
+      <div class="menu">
+        <a href="index.html" class="page-link">WORKS</a>
+        <a href="about.html" class="page-link">ABOUT</a>
+        <a href="contact.html" class="page-link" style="border-bottom: 2px solid #000;">CONTACT</a>
+      </div>
+    </div>
+
+    <div class="contact-wrapper" id="contactContent">
+      <h1 class="main-text">
+        I collaborate with brands, agencies, and event organizers to create immersive experiences through design, 3D visuals, and creative storytelling. Let's build something memorable.
+      </h1>
+      <a href="mailto:armenrifaihasibuan@gmail.com" class="email-link" id="scatterEmail">Armenrifaihasibuan@gmail.com</a>
+    </div>
+
+    <div class="footer-section">
+      <div class="footer-column">
+        <h4>Social</h4>
+        <a href="https://www.instagram.com/armenrifaihs/" target="_blank">Instagram</a>
+        <a href="https://www.linkedin.com/in/armenrifaihasibuan" target="_blank">Linked</a>
+        <a href="mailto:armenrifaihasibuan@gmail.com">Mail</a>
+      </div>
+      
+      <div class="footer-column">
+        <h4>Page</h4>
+        <a href="index.html" class="page-link">Works</a>
+        <a href="about.html" class="page-link">About</a>
+        <a href="#" class="page-link">Contact</a>
+      </div>
+      
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <p>+628 137359 9096</p>
+        <a href="mailto:armenrifaihasibuan@gmail.com">armenrifaihasibuan@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const contactContent = document.getElementById('contactContent');
+    const emailLink = document.getElementById('scatterEmail');
+    let isLeaving = false;
+
+    // --- LOGIK ANIMASI BERSERAK (PER HURUF) ---
+    const text = emailLink.innerText;
+    emailLink.innerHTML = ''; // Kosongkan teks string bawaan
+
+    [...text].forEach(char => {
+      const span = document.createElement('span');
+      span.innerHTML = char === ' ' ? '&nbsp;' : char;
+
+      // Picu koordinat acak baru tepat saat huruf disentuh kursor
+      span.addEventListener('mouseenter', () => {
+        const randomX = (Math.random() - 0.5) * 60;  // Jarak pentalan X (-30px s/d 30px)
+        const randomY = (Math.random() - 0.5) * 60;  // Jarak pentalan Y (-30px s/d 30px)
+        const randomRot = (Math.random() - 0.5) * 90; // Putaran rotasi (-45deg s/d 45deg)
+
+        span.style.setProperty('--x', `${randomX}px`);
+        span.style.setProperty('--y', `${randomY}px`);
+        span.style.setProperty('--r', `${randomRot}deg`);
+      });
+
+      // Kembalikan posisi huruf ke semula saat kursor menjauh
+      span.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+          span.style.setProperty('--x', '0px');
+          span.style.setProperty('--y', '0px');
+          span.style.setProperty('--r', '0deg');
+        }, 50); // Delay tipis agar transisi terasa organik
+      });
+
+      emailLink.appendChild(span);
+    });
+    // ------------------------------------------
+
+    // Animasi Masuk Halaman (Fade In-Up)
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        contactContent.classList.add('reveal-smooth');
+      }, 100);
+    });
+
+    // Menangani Transisi Keluar Halaman
+    document.querySelectorAll('.page-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const destination = this.getAttribute('href');
+
+        if (destination === '#' || destination === 'contacts.html') {
+          e.preventDefault();
+          return;
+        }
+
+        e.preventDefault();
+        if (isLeaving) return;
+        isLeaving = true;
+
+        contactContent.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+        contactContent.style.opacity = "0";
+        contactContent.style.transform = "translateY(-20px)";
+
+        setTimeout(() => {
+          window.location.href = destination;
+        }, 500);
+      });
+    });
+  </script>
+</body>
+</html>
